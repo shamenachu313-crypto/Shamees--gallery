@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="ml">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Shamees Gallery | Custom Gifts & Hampers</title>
+    <style>
+        :root {
+            --bg-color: #0b0b0b;
+            --surface-color: #161616;
+            --accent-color: #bfa37a; /* Luxury Rose Gold / Bronze */
+            --text-color: #ffffff;
+            --text-muted: #a0a0a0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            line-height: 1.6;
+        }
+
+        /* Top Announcement Bar */
+        .announcement-bar {
+            background: linear-gradient(90deg, #2c1f18, #4a3728);
+            color: var(--accent-color);
+            text-align: center;
+            padding: 8px 10px;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            font-weight: 600;
+            border-bottom: 1px solid rgba(191, 163, 122, 0.2);
+        }
+
+        /* Header / Navbar */
+        header {
+            background-color: rgba(11, 11, 11, 0.95);
+            padding: 15px 20px;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .brand-identity {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .logo-img {
+            width: 55px;
+            height: 55px;
+            border-radius: 50%;
+            border: 2px solid var(--accent-color);
+            object-fit: cover;
+            background-color: #000;
+        }
+
+        .brand-text h1 {
+            font-size: 1.4rem;
+            color: #fff;
+            letter-spacing: 1px;
+        }
+
+        .brand-text p {
+            font-size: 0.75rem;
+            color: var(--accent-color);
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 60px 20px;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto;
+            background: radial-gradient(circle at center, #1c1510 0%, #0b0b0b 70%);
+        }
+
+        .motto-tags {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .tag {
+            border: 1px solid var(--accent-color);
+            color: var(--accent-color);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            background-color: rgba(191, 163, 122, 0.05);
+        }
+
+        .hero h2 {
+            font-size: 2.2rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+            color: #fff;
+            background: linear-gradient(135deg, #ffffff 0%, #e0c3fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+            margin-bottom: 30px;
+        }
+
+        /* Catalog / Products Section */
+        .catalog-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 40px 20px 80px 20px;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 1.8rem;
+            margin-bottom: 40px;
+            position: relative;
+            color: var(--accent-color);
+            letter-spacing: 1px;
+        }
+
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 50px;
+            height: 2px;
+            background-color: var(--accent-color);
+            margin: 10px auto 0 auto;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: var(--surface-color);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.03);
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(191, 163, 122, 0.3);
+        }
+
+        .product-img-box {
+            width: 100%;
+            height: 250px;
+            background-color: #222;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .product-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .img-placeholder {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #555;
+            font-size: 0.9rem;
+            text-align: center;
+            padding: 20px;
+            background: linear-gradient(135deg, #1f1f1f, #111111);
+        }
+
+        /* Specific styles for multi-image grid in Save the Date */
+        .save-the-date-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            grid-template-rows: repeat(2, 1fr);
+            gap: 4px;
+            width: 100%;
+            height: 100%;
+            background-color: #222;
+        }
+
+        .std-thumb {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .product-info {
+            padding: 20px;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-name {
+            font-size: 1.2rem;
+            margin-bottom: 8px;
+            color: #fff;
+        }
+
+        .product-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+            flex-grow: 1;
+        }
+
+        /* Action Buttons */
+        .btn-whatsapp {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background-color: transparent;
+            color: var(--accent-color);
+            border: 1px solid var(--accent-color);
+            padding: 10px 15px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-size: 0.9rem;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .btn-whatsapp:hover {
+            background-color: var(--accent-color);
+            color: #000;
+        }
+
+        /* Footer Social Hook */
+        footer {
+            background-color: #050505;
+            padding: 40px 20px;
+            text-align: center;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .footer-social-title {
+            color: #fff;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .insta-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: var(--accent-color);
+            text-decoration: none;
+            font-weight: 600;
+            border-bottom: 1px solid transparent;
+            padding-bottom: 2px;
+            transition: border-color 0.3s ease;
+        }
+
+        .insta-link:hover {
+            border-color: var(--accent-color);
+        }
+
+        .copyright {
+            margin-top: 30px;
+            font-size: 0.8rem;
+            color: #555;
+        }
+
+        @media (max-width: 600px) {
+            .hero h2 {
+                font-size: 1.7rem;
+            }
+            .product-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Top Announcement -->
+    <div class="announcement-bar">
+        ✨ PREMIUM CUSTOM GIFTS & DESIGN STUDIO
+    </div>
+
+    <!-- Header Area -->
+    <header>
+        <div class="nav-container">
+            <div class="brand-identity">
+                <img src="logo.png" alt="Shamees Gallery" class="logo-img" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='50' height='50' viewBox='0 0 50 50'><rect width='50' height='50' fill='%23161616'/><text x='50%' y='55%' dominant-baseline='middle' text-anchor='middle' fill='%23bfa37a' font-size='12'>SG</text></svg>'">
+                <div class="brand-text">
+                    <h1>Shamees Gallery</h1>
+                    <p>Crafted With Love</p>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Introduction -->
+    <section class="hero">
+        <div class="motto-tags">
+            <span class="tag">Create</span>
+            <span class="tag">Inspire</span>
+            <span class="tag">Elevate</span>
+        </div>
+        <h2>Exquisite Custom Creations</h2>
+        <p>നിങ്ങളുടെ ജീവിതത്തിലെ ഏറ്റവും മനോഹരമായ നിമിഷങ്ങളെ അവിസ്മരണീയമാക്കാൻ ക്രാഫ്റ്റ് ചെയ്ത പ്രീമിയം കസ്റ്റമൈസ്ഡ് ഉൽപ്പന്നങ്ങൾ.</p>
+    </section>
+
+    <!-- Collection Section -->
+    <section class="catalog-container">
+        <h3 class="section-title">Our Collection</h3>
+        
+        <div class="product-grid">
+
+            <!-- Item 1: Save the Date (With Image Layout Grid) -->
+            <div class="product-card">
+                <div class="product-img-box">
+                    <div class="save-the-date-grid">
+                        <img src="save-the-date-1.jpg" alt="Save the Date Arabic Arch" class="std-thumb" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='%23222'><rect width='100%' height='100%'/></svg>'">
+                        <img src="save-the-date-2.jpg" alt="Save the Date Black Card" class="std-thumb" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='%23222'><rect width='100%' height='100%'/></svg>'">
+                        <img src="save-the-date-3.jpg" alt="Save the Date Newspaper Style" class="std-thumb" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='%23222'><rect width='100%' height='100%'/></svg>'">
+                        <img src="save-the-date-4.jpg" alt="Save the Date Venue Details" class="std-thumb" onerror="this.src='data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' fill='%23222'><rect width='100%' height='100%'/></svg>'">
+                    </div>
+                </div>
+                <div class="product-info">
+                    <div>
+                        <h4 class="product-name">Save the Date</h4>
+                        <p class="product-desc">ന്യൂസ്‌പേപ്പർ തീം, അക്രിലിക് ബോർഡ്, ഇസ്ലാമിക് കാലിഗ്രാഫി തുടങ്ങി ട്രെൻഡിങ് മോഡലുകളിൽ കസ്റ്റമൈസ് ചെയ്ത വേറിട്ട കാർഡുകൾ.</p>
+                    </div>
+                    <a href="https://wa.me/919544074649?text=Hi%20Shamees%20Gallery,%20I%20am%20interested%20in%20Save%20the%20Date%20designs.%20Can%20I%20know%20the%20price%20and%20details?" target="_blank" class="btn-whatsapp">
+                        വില വിവരങ്ങൾ ചോദിക്കാം
+                    </a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-box">
+                    <img src="sweet-box.jpg" alt="Cradle Ceremony Sweet Box" class="product-img" onerror="this.style.display='none'">
+                    <div class="img-placeholder">Cradle Ceremony Box</div>
+                </div>
+                <div class="product-info">
+                    <div>
+                        <h4 class="product-name">Cradle Ceremony Sweet Box</h4>
+                        <p class="product-desc">കുഞ്ഞുങ്ങളുടെ നൂലുകെട്ട്, പേരിടൽ ചടങ്ങുകൾക്ക് അതിഥികൾക്ക് മധുരം നൽകാൻ അനുയോജ്യമായ പ്രീമിയം ബോക്സുകൾ.</p>
+                    </div>
+                    <a href="https://wa.me/919544074649?text=Hi%20Shamees%20Gallery,%20I%20am%20interested%20in%20Cradle%20Ceremony%20Sweet%20Boxes.%20Can%20I%20know%20the%20price%20and%20details?" target="_blank" class="btn-whatsapp">
+                        വില വിവരങ്ങൾ ചോദിക്കാം
+                    </a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-box">
+                    <img src="teachers-day.jpg" alt="Teachers Day Gifts" class="product-img" onerror="this.style.display='none'">
+                    <div class="img-placeholder">Teachers' Day Special</div>
+                </div>
+                <div class="product-info">
+                    <div>
+                        <h4 class="product-name">Teachers' Day Gift</h4>
+                        <p class="product-desc">പ്രിയപ്പെട്ട അധ്യാപകർക്ക് സ്നേഹത്തോടെയും ബഹുമാനത്തോടെയും സമ്മാനിക്കാൻ തയ്യാറാക്കിയ കസ്റ്റം ഉപഹാരങ്ങൾ.</p>
+                    </div>
+                    <a href="https://wa.me/919544074649?text=Hi%20Shamees%20Gallery,%20I%20am%20interested%20in%20Teachers%20Day%20gifts.%20Can%20I%20know%20the%20price%20and%20details?" target="_blank" class="btn-whatsapp">
+                        വില വിവരങ്ങൾ ചോദിക്കാം
+                    </a>
+                </div>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-box">
+                    <img src="frame.jpg" alt="Custom Photo Frames" class="product-img" onerror="this.style.display='none'">
+                    <div class="img-placeholder">Customized Photo Frame</div>
+                </div>
+                <div class="product-info">
+                    <div>
+                        <h4 class="product-name">Customized Frame</h4>
+                        <p class="product-desc">നിങ്ങളുടെ മനോഹരമായ ഓർമ്മകളെ എന്നെന്നും സൂക്ഷിച്ചുവെക്കാൻ പല ഡിസൈനുകളിൽ കസ്റ്റമൈസ് ചെയ്ത ഫ്രെയിമുകൾ.</p>
+                    </div>
+                    <a href="https://wa.me/919544074649?text=Hi%20Shamees%20Gallery,%20I%20am%20interested%20in%20Customized%20Frames.%20Can%20I%20know%20the%20price%20and%20details?" target="_blank" class="btn-whatsapp">
+                        വില വിവരങ്ങൾ ചോദിക്കാം
+                    </a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <footer>
+        <p class="footer-social-title">Follow Our Creative Journey</p>
+        <a href="https://www.instagram.com/shamees__gallery/" target="_blank" class="insta-link">
+            📸 Instagram @shamees__gallery
+        </a>
+        <p class="copyright">&copy; 2026 Shamees Gallery. All Rights Reserved.</p>
+    </footer>
+
+</body>
+</html>
